@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ShoppingCartApp.AppTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2020-04-26T17:04:16" hostname="Anthonys-MacBook.local" time="0.281">
+  <properties/>
+  <testcase name="adding bad item" classname="ShoppingCartApp.AppTest" time="0.18"/>
+  <testcase name="item is added" classname="ShoppingCartApp.AppTest" time="0.038"/>
+  <testcase name="item is deleted" classname="ShoppingCartApp.AppTest" time="0.008"/>
+  <testcase name="show list with no items" classname="ShoppingCartApp.AppTest" time="0.045">
+    <failure message="groovy.lang.MissingPropertyException: No such property: MockOut for class: ShoppingCartApp.AppTest" type="groovy.lang.MissingPropertyException">groovy.lang.MissingPropertyException: No such property: MockOut for class: ShoppingCartApp.AppTest
+	at ShoppingCartApp.AppTest.show list with no items(AppTest.groovy:54)
+</failure>
+  </testcase>
+  <testcase name="item is edited" classname="ShoppingCartApp.AppTest" time="0.01"/>
+  <system-out><![CDATA[bread removed
+List is empty
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
