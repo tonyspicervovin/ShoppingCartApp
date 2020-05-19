@@ -1,4 +1,4 @@
-package ShoppingCartApp;
+package main.java.ShoppingCartApp.model;
 
 public class ShoppingItems {
     private String name;
