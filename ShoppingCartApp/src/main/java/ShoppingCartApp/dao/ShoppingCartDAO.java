@@ -12,7 +12,7 @@ public class ShoppingCartDAO {
         try{
             itemList.add(item);
         }catch (Exception e ){
-            System.out.println(e);
+
         }
     }
 
@@ -20,11 +20,9 @@ public class ShoppingCartDAO {
         itemList.remove(item);
     }
 
-
-    public ArrayList<ShoppingItems> ItemList() {
+    public ArrayList<ShoppingItems> itemList() {
         return itemList;
     }
-
 
     public void updateItem(ShoppingItems newItem, ShoppingItems oldItem) {
         oldItem.setPrice(newItem.getPrice());

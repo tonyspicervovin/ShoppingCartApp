@@ -88,4 +88,8 @@ public class Menu {
             System.out.println("List is empty");
         }
     }
+
+    public void showMessage(String msg) {
+        System.out.println(msg);
+    }
 }

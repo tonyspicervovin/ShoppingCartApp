@@ -18,30 +18,37 @@ public class ShoppingCartService {
         if (selection == 1) {
             ShoppingItems item = shoppingCartController.buildItem();
             shoppingCartDAO.addItem(item);
+
         }else if (selection == 2) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.ItemList();
+            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
             int itemId = shoppingCartController.getUserItem(itemList);
             ShoppingItems item = matchItem(itemId);
             shoppingCartDAO.deleteItem(item);
-        }else if (selection == 3) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.ItemList();
-            shoppingCartController.displayItem(itemList);
-        }else if (selection == 4) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.ItemList();
-            shoppingCartController.calculateTotal(itemList);
-        }else if (selection == 5) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.ItemList();
-            int itemId = shoppingCartController.getUserItem(itemList);
-            ShoppingItems oldItem = matchItem(itemId);
-            ShoppingItems newItem = shoppingCartController.editItem(oldItem.getName());
-            shoppingCartDAO.updateItem(newItem, oldItem);
-        } else if (selection == 6){
 
+        }else if (selection == 3) {
+            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
+            shoppingCartController.displayItem(itemList);
+
+        }else if (selection == 4) {
+            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
+            shoppingCartController.calculateTotal(itemList);
+
+        }else if (selection == 5) {
+            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
+            int itemId = shoppingCartController.getUserItem(itemList);
+            if (itemList.size() != 0) {
+                ShoppingItems oldItem = matchItem(itemId);
+                ShoppingItems newItem = shoppingCartController.editItem(oldItem.getName());
+                shoppingCartDAO.updateItem(newItem, oldItem);
+            }
+
+        } else if (selection == 6){
+            shoppingCartController.message("Goodbye");
         }
     }
 
     private ShoppingItems matchItem(int itemId) {
-        ArrayList<ShoppingItems> itemList = shoppingCartDAO.ItemList();
+        ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
         for (int i = 0; i < itemList.size(); i++) {//looping through items, if item id matches we remove it and let user know if deleted or not found
             if (itemList.get(i).getId() == itemId) {
                 return itemList.get(i);

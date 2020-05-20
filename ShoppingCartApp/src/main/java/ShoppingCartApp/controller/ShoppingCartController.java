@@ -8,9 +8,11 @@ import main.java.ShoppingCartApp.view.Menu;
 import java.util.ArrayList;
 
 public class ShoppingCartController {
+
     Menu menu = new Menu();
     Build build = new Build();
     ShoppingCartService service = new ShoppingCartService();
+
     public void run() {
         while (true){
             int selection = menu.displayMenu();
@@ -25,9 +27,11 @@ public class ShoppingCartController {
         ShoppingItems item = build.UserInputBuildItem();
         return item;
     }
+
     public void displayItem(ArrayList<ShoppingItems> items) {
         menu.displayItems(items);
     }
+
     public void calculateTotal(ArrayList<ShoppingItems> items) {
         menu.calculateTotal(items);
     }
@@ -38,6 +42,9 @@ public class ShoppingCartController {
 
     public int getUserItem(ArrayList<ShoppingItems> itemList) {
         return menu.getUserItem(itemList);
+    }
 
+    public void message(String msg) {
+        menu.showMessage(msg);
     }
 }
