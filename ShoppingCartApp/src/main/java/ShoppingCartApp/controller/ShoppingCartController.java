@@ -6,6 +6,7 @@ import main.java.ShoppingCartApp.view.Build;
 import main.java.ShoppingCartApp.view.Menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ShoppingCartController {
 
@@ -32,8 +33,8 @@ public class ShoppingCartController {
         return item;
     }
 
-    public void displayItem(ArrayList<ShoppingItems> items) {
-        menu.displayItems(items);
+    public void displayCart(ArrayList<ShoppingItems> items) {
+        menu.displayCart(items);
     }
 
     public void calculateTotal(ArrayList<ShoppingItems> items) {
@@ -50,5 +51,8 @@ public class ShoppingCartController {
 
     public void message(String msg) {
         menu.showMessage(msg);
+    }
+    public int displayItems(HashMap<Integer, ShoppingItems> itemList) {
+       return menu.displayItem(itemList);
     }
 }

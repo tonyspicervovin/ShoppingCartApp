@@ -3,6 +3,7 @@ package main.java.ShoppingCartApp.view;
 import main.java.ShoppingCartApp.model.ShoppingItems;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu {
@@ -26,7 +27,7 @@ public class Menu {
         }
     }
 
-    public void displayItems(ArrayList<ShoppingItems> items) {
+    public void displayCart(ArrayList<ShoppingItems> items) {
         for (ShoppingItems item : items) {   // printing each shopping item
             System.out.println(String.format("id: %d name: %s price: %.2f qty: %d", item.getId(), item.getName(), item.getPrice(), item.getQty()));
         }
@@ -62,7 +63,7 @@ public class Menu {
     }
 
     public int getUserItem(ArrayList<ShoppingItems> itemList) {
-        displayItem(itemList);//displaying items and asking user for id they would like to delete
+        displayCart(itemList);//displaying items and asking user for id they would like to delete
         System.out.println("Enter the id of the item you would like to delete/edit");
         Scanner myObj = new Scanner(System.in);
         int deleteId = 0;
@@ -79,14 +80,23 @@ public class Menu {
 
 
 
-    public void displayItem(ArrayList<ShoppingItems> itemList) {
+    public int displayItem(HashMap<Integer, ShoppingItems> itemList) {
 
-        for (ShoppingItems item : itemList) {   // printing each shopping item
-            System.out.println(String.format("id: %d name: %s price: %.2f qty: %d", item.getId(), item.getName(), item.getPrice(), item.getQty()));
+        System.out.println("Enter the id of the item you would like");
+        Scanner myObj = new Scanner(System.in);
+        int itemChosen = 0;
+        for (Integer i : itemList.keySet()) {
+            System.out.println("id: " + i + " item: " + itemList.get(i).getName() + " price " + itemList.get(i).getPrice());
         }
-        if (itemList.size() == 0){  //show user a message if no items are in list
-            System.out.println("List is empty");
+        while (true) {
+            try {
+                itemChosen = myObj.nextInt();
+                break;
+            }catch (Exception e){
+                System.out.println("Please an integer");
+            }
         }
+        return itemChosen;
     }
 
     public void showMessage(String msg) {
