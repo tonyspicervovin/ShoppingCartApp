@@ -33,11 +33,11 @@ public class ShoppingCartController {
         return item;
     }
 
-    public void displayCart(ArrayList<ShoppingItems> items) {
-        menu.displayCart(items);
+    public void displayCart(ArrayList<Integer> itemsIds, HashMap<Integer, ShoppingItems> availableItems) {
+        menu.displayCart(itemsIds, availableItems);
     }
 
-    public void calculateTotal(ArrayList<ShoppingItems> items) {
+    public void calculateTotal(ArrayList<Integer> items) {
         menu.calculateTotal(items);
     }
 
@@ -45,7 +45,7 @@ public class ShoppingCartController {
         return menu.editItem(oldItemName);
     }
 
-    public int getUserItem(ArrayList<ShoppingItems> itemList) {
+    public int getUserItem(ArrayList<Integer> itemList) {
         return menu.getUserItem(itemList);
     }
 

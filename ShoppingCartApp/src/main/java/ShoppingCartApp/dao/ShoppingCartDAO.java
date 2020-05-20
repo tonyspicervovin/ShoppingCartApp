@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class ShoppingCartDAO {
     //initializing list for shopping item objects
-    public ArrayList<ShoppingItems> cartList = new ArrayList<>();
+    public ArrayList<Integer> cartList = new ArrayList<>();
 
     HashMap<Integer, ShoppingItems> itemList = new HashMap<>();
 
@@ -18,21 +18,21 @@ public class ShoppingCartDAO {
         itemList.put(1, bread);
         itemList.put(2, milk);
         itemList.put(3, eggs);
-        System.out.println("data is populated");
     }
 
-    public void addItem(ShoppingItems item) {
+    public void addItem(int item) {
         try{
             cartList.add(item);
+            System.out.println("Adding id " + cartList);
         }catch (Exception e ){
         }
     }
 
-    public void deleteItem(ShoppingItems item) {
+    public void deleteItem(Integer item) {
         cartList.remove(item);
     }
 
-    public ArrayList<ShoppingItems> cartList() {
+    public ArrayList<Integer> cartList() {
         return cartList;
     }
     public HashMap<Integer, ShoppingItems> itemList() {

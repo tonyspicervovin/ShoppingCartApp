@@ -27,21 +27,19 @@ public class Menu {
         }
     }
 
-    public void displayCart(ArrayList<ShoppingItems> items) {
-        for (ShoppingItems item : items) {   // printing each shopping item
-            System.out.println(String.format("id: %d name: %s price: %.2f qty: %d", item.getId(), item.getName(), item.getPrice(), item.getQty()));
-        }
-        if (items.size() == 0) {  //show user a message if no items are in list
-            System.out.println("List is empty");
+    public void displayCart(ArrayList<Integer> itemsId, HashMap<Integer, ShoppingItems> availableItems) {
+        for (Integer item : itemsId) {   // printing each shopping item
+            System.out.println(availableItems.get(item));
+            //System.out.println(String.format("id: %d name: %s price: %.2f qty: %d", item.getId(), item.getName(), item.getPrice(), item.getQty()));
         }
     }
 
-    public void calculateTotal(ArrayList<ShoppingItems> items) {
-        double totalPrice = 0; //looping through list of objects and calculating total cost
+    public void calculateTotal(ArrayList<Integer> items) {
+        /*double totalPrice = 0; //looping through list of objects and calculating total cost
         for (ShoppingItems x : items) {
             totalPrice = totalPrice + (x.getPrice() * x.getQty());
         }
-        System.out.println(String.format("Order total: %.2f$", totalPrice));
+        System.out.println(String.format("Order total: %.2f$", totalPrice));*/
     }
 
     public ShoppingItems editItem(String oldItemName) {
@@ -62,8 +60,8 @@ public class Menu {
         }
     }
 
-    public int getUserItem(ArrayList<ShoppingItems> itemList) {
-        displayCart(itemList);//displaying items and asking user for id they would like to delete
+    public int getUserItem(ArrayList<Integer> itemList) {
+        /*displayCart(itemList);//displaying items and asking user for id they would like to delete
         System.out.println("Enter the id of the item you would like to delete/edit");
         Scanner myObj = new Scanner(System.in);
         int deleteId = 0;
@@ -75,7 +73,8 @@ public class Menu {
                 System.out.println("Please an integer");
             }
         }
-        return deleteId;
+        return deleteId;*/
+        return 0;
     }
 
 
