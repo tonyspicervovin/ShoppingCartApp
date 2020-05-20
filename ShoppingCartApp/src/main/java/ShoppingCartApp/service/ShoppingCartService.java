@@ -11,7 +11,7 @@ public class ShoppingCartService {
 
     ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
 
-    public void menuInput(int selection){
+    public void menuInput(int selection) {
 
         ShoppingCartController shoppingCartController = new ShoppingCartController();
 
@@ -20,10 +20,7 @@ public class ShoppingCartService {
             shoppingCartDAO.addItem(item);
 
         }else if (selection == 2) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
-            int itemId = shoppingCartController.getUserItem(itemList);
-            ShoppingItems item = matchItem(itemId);
-            shoppingCartDAO.deleteItem(item);
+            deleteItem(shoppingCartController);
 
         }else if (selection == 3) {
             ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
@@ -34,17 +31,28 @@ public class ShoppingCartService {
             shoppingCartController.calculateTotal(itemList);
 
         }else if (selection == 5) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
-            int itemId = shoppingCartController.getUserItem(itemList);
-            if (itemList.size() != 0) {
-                ShoppingItems oldItem = matchItem(itemId);
-                ShoppingItems newItem = shoppingCartController.editItem(oldItem.getName());
-                shoppingCartDAO.updateItem(newItem, oldItem);
-            }
-
-        } else if (selection == 6){
+            editItem(shoppingCartController);
+        }
+        else if (selection == 6){
             shoppingCartController.message("Goodbye");
         }
+    }
+    protected void editItem(ShoppingCartController shoppingCartController) {
+        ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
+        int itemId = shoppingCartController.getUserItem(itemList);
+        if (itemList.size() != 0) {
+            ShoppingItems oldItem = matchItem(itemId);
+            ShoppingItems newItem = shoppingCartController.editItem(oldItem.getName());
+            shoppingCartDAO.updateItem(newItem, oldItem);
+        }
+
+    }
+
+    protected void deleteItem(ShoppingCartController shoppingCartController) {
+        ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
+        int itemId = shoppingCartController.getUserItem(itemList);
+        ShoppingItems item = matchItem(itemId);
+        shoppingCartDAO.deleteItem(item);
     }
 
     private ShoppingItems matchItem(int itemId) {

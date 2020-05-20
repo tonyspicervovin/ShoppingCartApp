@@ -12,7 +12,6 @@ public class ShoppingCartDAO {
         try{
             itemList.add(item);
         }catch (Exception e ){
-
         }
     }
 
