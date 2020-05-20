@@ -14,27 +14,29 @@ public class ShoppingCartService {
     public void menuInput(int selection) {
 
         ShoppingCartController shoppingCartController = new ShoppingCartController();
+        ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
 
-        if (selection == 1) {
-            ShoppingItems item = shoppingCartController.buildItem();
-            shoppingCartDAO.addItem(item);
 
-        }else if (selection == 2) {
-            deleteItem(shoppingCartController);
-
-        }else if (selection == 3) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
-            shoppingCartController.displayItem(itemList);
-
-        }else if (selection == 4) {
-            ArrayList<ShoppingItems> itemList = shoppingCartDAO.itemList();
-            shoppingCartController.calculateTotal(itemList);
-
-        }else if (selection == 5) {
-            editItem(shoppingCartController);
-        }
-        else if (selection == 6){
-            shoppingCartController.message("Goodbye");
+        switch(selection) {
+            case 1:
+                ShoppingItems item = shoppingCartController.buildItem();
+                shoppingCartDAO.addItem(item);
+                break;
+            case 2:
+                deleteItem(shoppingCartController);
+                break;
+            case 3:
+                shoppingCartController.displayItem(itemList);
+                break;
+            case 4:
+                shoppingCartController.calculateTotal(itemList);
+                break;
+            case 5:
+                editItem(shoppingCartController);
+                break;
+            case 6:
+                shoppingCartController.message("Goodbye");
+                break;
         }
     }
     protected void editItem(ShoppingCartController shoppingCartController) {
