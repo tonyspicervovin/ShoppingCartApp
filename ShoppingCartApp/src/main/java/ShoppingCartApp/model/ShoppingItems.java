@@ -45,11 +45,10 @@ public class ShoppingItems {
                 '}';
     }
 
-    public ShoppingItems(String name, double price, int qty)
+    public ShoppingItems(String name, double price)
     {
         this.name = name;
         this.price = price;
-        this.qty = qty;
         this.id = idCount;
         idCount++;
     }

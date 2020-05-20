@@ -21,7 +21,7 @@ public class Build {
                 price = myObj.nextDouble();
                 System.out.println("Enter item qty");
                 qty = myObj.nextInt();
-                return new ShoppingItems(itemName, price, qty);
+                return new ShoppingItems(itemName, price);
             } catch (Exception e) {
                 nada = myObj.nextLine(); // just to clear the non read qty, not used
                 System.out.println("Please enter a name, price and qty");

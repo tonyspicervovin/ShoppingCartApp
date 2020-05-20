@@ -53,7 +53,7 @@ public class Menu {
                 price = myObj.nextDouble();
                 System.out.println("Enter a new qty for " + oldItemName);
                 qty = myObj.nextInt();
-                return new ShoppingItems(oldItemName, price, qty);
+                return new ShoppingItems(oldItemName, price);
             } catch (Exception e) {
                 System.out.println("Please enter a price/qty");
                 String nada = myObj.nextLine();

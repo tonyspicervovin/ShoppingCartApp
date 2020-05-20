@@ -66,4 +66,7 @@ public class ShoppingCartService {
         }
     return null;
     }
+    public void populateItems(){
+        shoppingCartDAO.populateMap();
+    }
 }

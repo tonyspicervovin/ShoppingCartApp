@@ -15,7 +15,11 @@ public class ShoppingCartController {
 
     public void run() {
         while (true){
+            //populate data
+            service.populateItems();
+            //display menu
             int selection = menu.displayMenu();
+            //get user input
             service.menuInput(selection);
             if (selection == 6){
                 break;
