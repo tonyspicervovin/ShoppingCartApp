@@ -20,16 +20,19 @@ public class ShoppingCartDAO {
         itemList.put(3, eggs);
     }
 
-    public void addItem(int item) {
+    public boolean addItem(int item) {
         try{
             cartList.add(item);
-            System.out.println("Adding id " + cartList);
+            return true;
         }catch (Exception e ){
+            return false;
         }
     }
 
-    public void deleteItem(Integer item) {
-        cartList.remove(item);
+    public boolean deleteItem(Integer itemId) {
+
+        return cartList.remove(itemId);
+
     }
 
     public ArrayList<Integer> cartList() {

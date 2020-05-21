@@ -28,9 +28,9 @@ public class Menu {
     }
 
     public void displayCart(ArrayList<Integer> itemsId, HashMap<Integer, ShoppingItems> availableItems) {
-        for (Integer item : itemsId) {   // printing each shopping item
-            System.out.println(availableItems.get(item));
-            //System.out.println(String.format("id: %d name: %s price: %.2f qty: %d", item.getId(), item.getName(), item.getPrice(), item.getQty()));
+        for (Integer id : itemsId) {   // printing each shopping item
+            ShoppingItems item = availableItems.get(id);
+            System.out.println(String.format("id: %d name: %s price: %.2f", id, item.getName(), item.getPrice()));
         }
     }
 
@@ -60,7 +60,20 @@ public class Menu {
         }
     }
 
-    public int getUserItem(ArrayList<Integer> itemList) {
+    public int getUserItem() {
+
+        System.out.println("Enter the id of the item you would like to delete/edit");
+        Scanner myObj = new Scanner(System.in);
+        int deleteId = 0;
+        while(true){
+            try {
+                deleteId = myObj.nextInt();
+                break;
+            }catch (Exception e ){
+                System.out.println("Please an integer");
+            }
+        }
+        return deleteId;
         /*displayCart(itemList);//displaying items and asking user for id they would like to delete
         System.out.println("Enter the id of the item you would like to delete/edit");
         Scanner myObj = new Scanner(System.in);
@@ -74,7 +87,6 @@ public class Menu {
             }
         }
         return deleteId;*/
-        return 0;
     }
 
 

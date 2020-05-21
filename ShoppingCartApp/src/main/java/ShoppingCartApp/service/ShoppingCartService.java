@@ -11,17 +11,16 @@ public class ShoppingCartService {
 
 
     ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+    ArrayList<Integer> cartListIds = shoppingCartDAO.cartList();
+    HashMap<Integer, ShoppingItems> itemList =  shoppingCartDAO.itemList();
 
     public void menuInput(int selection) {
 
         ShoppingCartController shoppingCartController = new ShoppingCartController();
-        ArrayList<Integer> cartListIds = shoppingCartDAO.cartList();
-        HashMap<Integer, ShoppingItems> itemList =  shoppingCartDAO.itemList();
 
         switch(selection) {
             case 1:
-                int itemChosen = shoppingCartController.displayItems(itemList);
-                shoppingCartDAO.addItem(itemChosen);
+                addItem(shoppingCartController);
                 break;
             case 2:
                 deleteItem(shoppingCartController);
@@ -40,6 +39,17 @@ public class ShoppingCartService {
                 break;
         }
     }
+
+    protected void addItem(ShoppingCartController shoppingCartController) {
+        int itemChosen = shoppingCartController.displayItems(itemList);
+        boolean added = shoppingCartDAO.addItem(itemChosen);
+        if (added) {
+            shoppingCartController.message(itemList.get(itemChosen).getName() + " added");
+        }else{
+            shoppingCartController.message("Item not added");
+        }
+    }
+
     protected void editItem(ShoppingCartController shoppingCartController) {
         /*ArrayList<Integer> itemList = shoppingCartDAO.cartList();
         int itemId = shoppingCartController.getUserItem(itemList);
@@ -52,10 +62,19 @@ public class ShoppingCartService {
     }
 
     protected void deleteItem(ShoppingCartController shoppingCartController) {
-        ArrayList<Integer> itemList = shoppingCartDAO.cartList();
+        shoppingCartController.displayCart(cartListIds, itemList);
+        int deleteId = shoppingCartController.getUserItem();
+        System.out.println(deleteId);
+        boolean isDeleted = shoppingCartDAO.deleteItem(deleteId);
+        if(isDeleted) {
+            shoppingCartController.message(itemList.get(deleteId).getName() + " was removed");
+        }else {
+            shoppingCartController.message("No item with that ID found");
+        }
+        /*ArrayList<Integer> itemList = shoppingCartDAO.cartList();
         int itemId = shoppingCartController.getUserItem(itemList);
         Integer item = matchItem(itemId);
-        shoppingCartDAO.deleteItem(item);
+        shoppingCartDAO.deleteItem(item);*/
     }
 
     private Integer matchItem(int itemId) {

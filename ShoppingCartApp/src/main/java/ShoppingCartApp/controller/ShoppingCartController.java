@@ -45,8 +45,8 @@ public class ShoppingCartController {
         return menu.editItem(oldItemName);
     }
 
-    public int getUserItem(ArrayList<Integer> itemList) {
-        return menu.getUserItem(itemList);
+    public int getUserItem() {
+        return menu.getUserItem();
     }
 
     public void message(String msg) {
