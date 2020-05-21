@@ -1,5 +1,7 @@
 package main.java.ShoppingCartApp.model;
 
+//model for shopping item objects
+
 public class ShoppingItems {
     private String name;
     private double price;

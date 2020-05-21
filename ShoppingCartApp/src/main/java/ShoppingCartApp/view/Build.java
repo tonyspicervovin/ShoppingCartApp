@@ -1,4 +1,4 @@
-package main.java.ShoppingCartApp.view;
+/*package main.java.ShoppingCartApp.view;
 
 import main.java.ShoppingCartApp.model.ShoppingItems;
 
@@ -28,4 +28,4 @@ public class Build {
             }
         }
     }
-}
+}*/
