@@ -6,7 +6,6 @@ public class ShoppingItems {
     private String name;
     private double price;
     private int qty;
-    private static int idCount = 1;
     private int id;
 
     public String getName() {
@@ -22,7 +21,7 @@ public class ShoppingItems {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+            this.price = price;
     }
 
     public int getQty() {
@@ -37,6 +36,10 @@ public class ShoppingItems {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "ShoppingItem{" +
@@ -45,13 +48,5 @@ public class ShoppingItems {
                 ", qty=" + qty +
                 ", id =" + id +
                 '}';
-    }
-
-    public ShoppingItems(String name, double price)
-    {
-        this.name = name;
-        this.price = price;
-        this.id = idCount;
-        idCount++;
     }
 }

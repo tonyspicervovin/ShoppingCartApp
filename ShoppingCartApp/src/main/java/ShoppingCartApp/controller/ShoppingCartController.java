@@ -15,25 +15,16 @@ public class ShoppingCartController {
     ShoppingCartService service = new ShoppingCartService();
 
     public void run() {
-        while (true){
-            //populate data
-            service.populateItems();
-            //display menu
+
+        boolean keepGoing = true;
+        service.populateItems();
+        while (keepGoing){
             int selection = menu.displayMenu();
-            //get user input
             service.menuInput(selection);
-            //end program when user chooses 5
             if (selection == 5){
-                break;
+                keepGoing = false;
             }
         }
-    }
-
-    //methods to relay from service to view
-    public void buildItem(){
-        /*ShoppingItems item = build.UserInputBuildItem();
-        return item;*/
-
     }
 
     public void displayCart(ArrayList<Integer> itemsIds, HashMap<Integer, ShoppingItems> availableItems) {
