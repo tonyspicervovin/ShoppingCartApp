@@ -37,8 +37,8 @@ public class ShoppingCartController {
         menu.displayCart(itemsIds, availableItems);
     }
 
-    public void calculateTotal(ArrayList<Integer> items) {
-        menu.calculateTotal(items);
+    public void calculateTotal(ArrayList<Integer> itemIds, HashMap<Integer, ShoppingItems> itemList) {
+        menu.calculateTotal(itemIds, itemList);
     }
 
     public ShoppingItems editItem(String oldItemName) {

@@ -15,9 +15,14 @@ public class ShoppingCartDAO {
         ShoppingItems bread = new ShoppingItems("bread", 3.99);
         ShoppingItems milk = new ShoppingItems("milk", 2.49);
         ShoppingItems eggs = new ShoppingItems("eggs", 4.50);
+        ShoppingItems pasta = new ShoppingItems("pasta", 2.25);
+        ShoppingItems grapes = new ShoppingItems("grapes", 3.49);
+
         itemList.put(1, bread);
         itemList.put(2, milk);
         itemList.put(3, eggs);
+        itemList.put(4, pasta);
+        itemList.put(5,grapes);
     }
 
     public boolean addItem(int item) {

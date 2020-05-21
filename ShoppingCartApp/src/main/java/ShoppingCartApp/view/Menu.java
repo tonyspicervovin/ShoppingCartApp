@@ -34,7 +34,12 @@ public class Menu {
         }
     }
 
-    public void calculateTotal(ArrayList<Integer> items) {
+    public void calculateTotal(ArrayList<Integer> itemIds, HashMap<Integer, ShoppingItems> itemList) {
+        double cartTotal = 0;
+        for(Integer id : itemIds) {
+            cartTotal = cartTotal + (itemList.get(id).getPrice());
+        }
+        System.out.println(String.format("Order total: %.2f$", cartTotal));
         /*double totalPrice = 0; //looping through list of objects and calculating total cost
         for (ShoppingItems x : items) {
             totalPrice = totalPrice + (x.getPrice() * x.getQty());

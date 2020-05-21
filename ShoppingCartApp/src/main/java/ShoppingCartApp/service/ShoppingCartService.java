@@ -29,7 +29,7 @@ public class ShoppingCartService {
                 shoppingCartController.displayCart(cartListIds, itemList);
                 break;
             case 4:
-                shoppingCartController.calculateTotal(cartListIds);
+                shoppingCartController.calculateTotal(cartListIds, itemList);
                 break;
             case 5:
                 editItem(shoppingCartController);
