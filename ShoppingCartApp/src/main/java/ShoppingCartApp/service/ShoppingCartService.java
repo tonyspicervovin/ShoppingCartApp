@@ -32,25 +32,25 @@ public class ShoppingCartService {
                 shoppingCartController.calculateTotal(cartListIds, itemList);
                 break;
             case 5:
-                editItem(shoppingCartController);
-                break;
-            case 6:
                 shoppingCartController.message("Goodbye");
                 break;
         }
     }
 
     protected void addItem(ShoppingCartController shoppingCartController) {
+
         int itemChosen = shoppingCartController.displayItems(itemList);
-        boolean added = shoppingCartDAO.addItem(itemChosen);
-        if (added) {
+        if (itemList.containsKey(itemChosen)){
+            shoppingCartDAO.addItem(itemChosen);
             shoppingCartController.message(itemList.get(itemChosen).getName() + " added");
-        }else{
-            shoppingCartController.message("Item not added");
+        }else {
+            shoppingCartController.message("Item with id: " + itemChosen + " not found");
         }
     }
 
     protected void editItem(ShoppingCartController shoppingCartController) {
+        //unused method for future implementation
+
         /*ArrayList<Integer> itemList = shoppingCartDAO.cartList();
         int itemId = shoppingCartController.getUserItem(itemList);
         if (itemList.size() != 0) {
@@ -62,31 +62,22 @@ public class ShoppingCartService {
     }
 
     protected void deleteItem(ShoppingCartController shoppingCartController) {
+
+        //showing user items in their cart
         shoppingCartController.displayCart(cartListIds, itemList);
+        //getting user input for which item they want to delete, by id
         int deleteId = shoppingCartController.getUserItem();
-        System.out.println(deleteId);
+        //deleting item from cart by id, return true if it was deleted and displaying relevant information to the user
         boolean isDeleted = shoppingCartDAO.deleteItem(deleteId);
         if(isDeleted) {
             shoppingCartController.message(itemList.get(deleteId).getName() + " was removed");
         }else {
             shoppingCartController.message("No item with that ID found");
         }
-        /*ArrayList<Integer> itemList = shoppingCartDAO.cartList();
-        int itemId = shoppingCartController.getUserItem(itemList);
-        Integer item = matchItem(itemId);
-        shoppingCartDAO.deleteItem(item);*/
     }
 
-    private Integer matchItem(int itemId) {
-       /* ArrayList<Integer> itemList = shoppingCartDAO.cartList();
-        for (int i = 0; i < itemList.size(); i++) {//looping through items, if item id matches we remove it and let user know if deleted or not found
-            if (itemList.get(i).getId() == itemId) {
-                return itemList.get(i);
-            }
-        }*/
-    return null;
-    }
     public void populateItems(){
+        //populating data for available items
         shoppingCartDAO.populateMap();
     }
 }

@@ -2,7 +2,6 @@ package main.java.ShoppingCartApp.controller;
 
 import main.java.ShoppingCartApp.model.ShoppingItems;
 import main.java.ShoppingCartApp.service.ShoppingCartService;
-import main.java.ShoppingCartApp.view.Build;
 import main.java.ShoppingCartApp.view.Menu;
 
 import java.util.ArrayList;
@@ -10,8 +9,9 @@ import java.util.HashMap;
 
 public class ShoppingCartController {
 
+    //initializing objects
     Menu menu = new Menu();
-    Build build = new Build();
+    //Build build = new Build();
     ShoppingCartService service = new ShoppingCartService();
 
     public void run() {
@@ -22,18 +22,22 @@ public class ShoppingCartController {
             int selection = menu.displayMenu();
             //get user input
             service.menuInput(selection);
-            if (selection == 6){
+            //end program when user chooses 5
+            if (selection == 5){
                 break;
             }
         }
     }
 
-    public ShoppingItems buildItem(){
-        ShoppingItems item = build.UserInputBuildItem();
-        return item;
+    //methods to relay from service to view
+    public void buildItem(){
+        /*ShoppingItems item = build.UserInputBuildItem();
+        return item;*/
+
     }
 
     public void displayCart(ArrayList<Integer> itemsIds, HashMap<Integer, ShoppingItems> availableItems) {
+        message("Cart Contents");
         menu.displayCart(itemsIds, availableItems);
     }
 
