@@ -13,7 +13,7 @@ public class Menu {
         while (true) {
             //Printing menu for application, scanning user input and verifying it's an int 1-5
             try {
-                System.out.println("***Shopping Cart Application*** \n1.Add item \n2.Delete item\n3.Display cart\n4.Calculate Total\n5.Exit");
+                System.out.println("***Shopping Cart Application*** \n1.Add item to cart\n2.Delete item\n3.Display cart\n4.Calculate Total\n5.Exit");
                 System.out.println("Enter a selection 1-5");
                 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
                 selection = myObj.nextInt();
@@ -27,8 +27,25 @@ public class Menu {
         }
     }
 
-    public void displayCart(ArrayList<Integer> itemsId, List<ShoppingItems> availableItems) {
-
+    public int displayCartWithChoice(ArrayList<Integer> itemsId, List<ShoppingItems> availableItems) {
+        int itemChosen = 0;
+        for (Integer id : itemsId) {   // printing each shopping item
+            ShoppingItems item = availableItems.get(id);
+            System.out.println(String.format("id: %d name: %s price: %.2f", id, item.getName(), item.getPrice()));
+        }
+        Scanner myObj = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.println("Enter the id of the item you would like to delete");
+                itemChosen = myObj.nextInt();
+                break;
+            }catch (Exception e){
+                System.out.println("Please an integer" + e.getMessage());
+            }
+        }
+        return itemChosen;
+    }
+    public void displayCart(ArrayList<Integer> itemsId, List<ShoppingItems> availableItems){
         for (Integer id : itemsId) {   // printing each shopping item
             ShoppingItems item = availableItems.get(id);
             System.out.println(String.format("id: %d name: %s price: %.2f", id, item.getName(), item.getPrice()));
@@ -43,29 +60,8 @@ public class Menu {
         }
         System.out.println(String.format("Order total: %.2f$", cartTotal));
     }
-
-    public ShoppingItems editItem(String oldItemName) {
-        //unused method for future implementation
-        /*Scanner myObj = new Scanner(System.in);
-        double price;
-        int qty;
-        System.out.println("Enter a new price for " + oldItemName);
-        while (true) {
-            try {
-                price = myObj.nextDouble();
-                System.out.println("Enter a new qty for " + oldItemName);
-                qty = myObj.nextInt();
-                return new ShoppingItems(oldItemName, price);
-            } catch (Exception e) {
-                System.out.println("Please enter a price/qty");
-                String nada = myObj.nextLine();
-            }
-        }*/
-        return null;
-    }
     public int displayItem(List<ShoppingItems> itemList) {
         //displaying available items and asking user which they would like to add
-        System.out.println("Enter the id of the item you would like");
         Scanner myObj = new Scanner(System.in);
         int itemChosen = 0;
         for (ShoppingItems item : itemList) {
@@ -73,11 +69,11 @@ public class Menu {
         }
         while (true) {
             try {
-                itemChosen = myObj.nextInt();
+                System.out.println("Enter the id of the item you would like");
                 itemChosen = myObj.nextInt();
                 break;
             }catch (Exception e){
-                System.out.println("Please an integer");
+                System.out.println("Please an integer" + e.getMessage());
             }
         }
         return itemChosen;

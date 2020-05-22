@@ -1,7 +1,7 @@
 package main.java.ShoppingCartApp.service;
 
-import main.java.ShoppingCartApp.controller.ShoppingCartController;
 import main.java.ShoppingCartApp.dao.ShoppingCartDAO;
+import main.java.ShoppingCartApp.dao.ShoppingCartDAOImpl;
 import main.java.ShoppingCartApp.model.ShoppingItems;
 
 import java.util.ArrayList;
@@ -10,51 +10,39 @@ import java.util.List;
 
 public class ShoppingCartService {
 
-    ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO();
+    ShoppingCartDAO shoppingCartDAOImpl = new ShoppingCartDAOImpl();
 
     public boolean addItem(int itemChosen) {
-        HashMap<Integer, ShoppingItems> itemMap = shoppingCartDAO.getHash();
+
+        HashMap<Integer, ShoppingItems> itemMap = shoppingCartDAOImpl.getHash();
         boolean isAdded = false;
         if(itemMap.containsKey(itemChosen)) {
-            shoppingCartDAO.addItem(itemChosen);
+            shoppingCartDAOImpl.addItem(itemChosen);
             isAdded = true;
         }
         return isAdded;
     }
 
-    public void editItem(ShoppingCartController shoppingCartController) {
-        //unused method for future implementation
-
-        /*ArrayList<Integer> itemList = shoppingCartDAO.cartList();
-        int itemId = shoppingCartController.getUserItem(itemList);
-        if (itemList.size() != 0) {
-            ShoppingItems oldItem = matchItem(itemId);
-            ShoppingItems newItem = shoppingCartController.editItem(oldItem.getName());
-            shoppingCartDAO.updateItem(newItem, oldItem);
-        }
-*/
-    }
-
     public boolean deleteItem(int deleteId) {
 
         //deleting item from cart by id, return true if it was deleted and displaying relevant information to the user
-        boolean isDeleted = shoppingCartDAO.deleteItem(deleteId);
+        boolean isDeleted = shoppingCartDAOImpl.deleteItem(deleteId);
         return isDeleted;
     }
     public List<ShoppingItems> getItemList() {
-        return shoppingCartDAO.getAllItems();
+        return shoppingCartDAOImpl.getAllItems();
     }
 
     public ArrayList<Integer> getCartList() {
-        return shoppingCartDAO.cartList;
+        return shoppingCartDAOImpl.cartList();
     }
 
     public HashMap<Integer,ShoppingItems> getHash() {
-        return shoppingCartDAO.getHash();
+        return shoppingCartDAOImpl.getHash();
     }
 
     public void populateItems(){
         //populating data for available items
-        shoppingCartDAO.populateMap();
+        shoppingCartDAOImpl.populateMap();
     }
 }

@@ -30,6 +30,7 @@ public class ShoppingCartController {
                     deleteItem(itemList);
                     break;
                 case 3:
+                    itemList = service.getItemList();
                     ArrayList<Integer> cartListIds = service.getCartList();
                     displayCart(cartListIds, itemList);
                     break;
@@ -49,7 +50,7 @@ public class ShoppingCartController {
 
     private void deleteItem(List<ShoppingItems> itemList) {
         ArrayList<Integer>  cartListIds = service.getCartList();
-        int deleteId = displayItems(itemList);
+        int deleteId = displayCartWithChoice(cartListIds, itemList);
         boolean isDeleted = service.deleteItem(deleteId);
         if (isDeleted) {
             message(itemList.get(deleteId).getName() + " was removed");
@@ -69,12 +70,17 @@ public class ShoppingCartController {
         }
     }
 
-    public void displayCart(ArrayList<Integer> itemsIds, List<ShoppingItems> availableItems) {
+    public int displayCartWithChoice(ArrayList<Integer> itemsIds, List<ShoppingItems> availableItems) {
         message("Cart Contents");
-        menu.displayCart(itemsIds, availableItems);
+        int itemChosen = menu.displayCartWithChoice(itemsIds, availableItems);
         if (itemsIds.size() == 0){
             menu.showMessage("Cart is empty");
         }
+        return itemChosen;
+    }
+    public void displayCart(ArrayList<Integer> itemsIds, List<ShoppingItems> availableItems) {
+        message("Cart Contents");
+        menu.displayCart(itemsIds, availableItems);
     }
 
     public void calculateTotal(ArrayList<Integer> itemIds, List<ShoppingItems> itemList) {
