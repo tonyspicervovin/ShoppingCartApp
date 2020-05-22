@@ -3,7 +3,7 @@ package main.java.ShoppingCartApp.view;
 import main.java.ShoppingCartApp.model.ShoppingItems;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -27,7 +27,7 @@ public class Menu {
         }
     }
 
-    public void displayCart(ArrayList<Integer> itemsId, HashMap<Integer, ShoppingItems> availableItems) {
+    public void displayCart(ArrayList<Integer> itemsId, List<ShoppingItems> availableItems) {
 
         for (Integer id : itemsId) {   // printing each shopping item
             ShoppingItems item = availableItems.get(id);
@@ -35,7 +35,7 @@ public class Menu {
         }
     }
 
-    public void calculateTotal(ArrayList<Integer> itemIds, HashMap<Integer, ShoppingItems> itemList) {
+    public void calculateTotal(ArrayList<Integer> itemIds, List<ShoppingItems> itemList) {
         //calculating total price for items in cart
         double cartTotal = 0;
         for(Integer id : itemIds) {
@@ -46,7 +46,7 @@ public class Menu {
 
     public ShoppingItems editItem(String oldItemName) {
         //unused method for future implementation
-        Scanner myObj = new Scanner(System.in);
+        /*Scanner myObj = new Scanner(System.in);
         double price;
         int qty;
         System.out.println("Enter a new price for " + oldItemName);
@@ -60,16 +60,18 @@ public class Menu {
                 System.out.println("Please enter a price/qty");
                 String nada = myObj.nextLine();
             }
-        }
+        }*/
+        return null;
     }
 
     public int getUserItem() {
         //asking user which item they would like to delete by id
-        System.out.println("Enter the id of the item you would like to delete/edit");
         Scanner myObj = new Scanner(System.in);
         int deleteId = 0;
         while(true){
             try {
+                System.out.println("Enter the id of the item you would like to delete/edit");
+                deleteId = myObj.nextInt();
                 deleteId = myObj.nextInt();
                 break;
             }catch (Exception e ){
@@ -80,14 +82,13 @@ public class Menu {
     }
 
 
-
-    public int displayItem(HashMap<Integer, ShoppingItems> itemList) {
+    public int displayItem(List<ShoppingItems> itemList) {
         //displaying available items and asking user which they would like to add
         System.out.println("Enter the id of the item you would like");
         Scanner myObj = new Scanner(System.in);
         int itemChosen = 0;
-        for (Integer i : itemList.keySet()) {
-            System.out.println("id: " + i + " item: " + itemList.get(i).getName() + " price " + itemList.get(i).getPrice());
+        for (ShoppingItems item : itemList) {
+            System.out.println(item.toString());
         }
         while (true) {
             try {

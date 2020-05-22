@@ -5,7 +5,7 @@ import main.java.ShoppingCartApp.service.ShoppingCartService;
 import main.java.ShoppingCartApp.view.Menu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 public class ShoppingCartController {
 
@@ -15,33 +15,27 @@ public class ShoppingCartController {
     ShoppingCartService service = new ShoppingCartService();
 
     public void run() {
-        while (true){
-            //populate data
-            service.populateItems();
-            //display menu
+
+        boolean keepGoing = true;
+        service.populateItems();
+        while (keepGoing){
             int selection = menu.displayMenu();
-            //get user input
             service.menuInput(selection);
-            //end program when user chooses 5
             if (selection == 5){
-                break;
+                keepGoing = false;
             }
         }
     }
 
-    //methods to relay from service to view
-    public void buildItem(){
-        /*ShoppingItems item = build.UserInputBuildItem();
-        return item;*/
-
-    }
-
-    public void displayCart(ArrayList<Integer> itemsIds, HashMap<Integer, ShoppingItems> availableItems) {
+    public void displayCart(ArrayList<Integer> itemsIds, List<ShoppingItems> availableItems) {
         message("Cart Contents");
         menu.displayCart(itemsIds, availableItems);
+        if (itemsIds.size() == 0){
+            menu.showMessage("Cart is empty");
+        }
     }
 
-    public void calculateTotal(ArrayList<Integer> itemIds, HashMap<Integer, ShoppingItems> itemList) {
+    public void calculateTotal(ArrayList<Integer> itemIds, List<ShoppingItems> itemList) {
         menu.calculateTotal(itemIds, itemList);
     }
 
@@ -56,7 +50,7 @@ public class ShoppingCartController {
     public void message(String msg) {
         menu.showMessage(msg);
     }
-    public int displayItems(HashMap<Integer, ShoppingItems> itemList) {
+    public int displayItems(List<ShoppingItems> itemList) {
        return menu.displayItem(itemList);
     }
 }
