@@ -4,6 +4,8 @@ import main.java.ShoppingCartApp.model.ShoppingItems;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShoppingCartDAO {
     //initializing list for shopping item ids, this is the users cart
@@ -13,16 +15,19 @@ public class ShoppingCartDAO {
 
     public void populateMap() {
         //creating our shopping objects and populating map
+        System.out.println("populating map");
 
         itemList.put(1, createItem("bread", 1, 3.50));
         itemList.put(2, createItem("milk", 2, 2.50));
         itemList.put(3, createItem("eggs", 3, 4.50));
         itemList.put(4, createItem("banana", 4, 3.50));
         itemList.put(5, createItem("grapes", 5, 3.50));
+
     }
 
     public void addItem(int itemId) {
         //adding an item to cart by id
+        System.out.println("Item id " + itemId);
         cartList.add(itemId);
     }
 
@@ -36,10 +41,8 @@ public class ShoppingCartDAO {
         return cartList;
     }
 
-    public HashMap<Integer, ShoppingItems> itemList() {
-        //returning list of available items
-        ArrayList<ShoppingItems> items = itemList.;
-        return itemList.values();
+    public List<ShoppingItems> getAllItems() {
+        return itemList.values().stream().collect(Collectors.toList());
     }
 
     public void updateItem(ShoppingItems newItem, ShoppingItems oldItem) {

@@ -42,11 +42,8 @@ public class ShoppingItems {
 
     @Override
     public String toString() {
-        return "ShoppingItem{" +
-                "name='" + name + '\'' +
+        return "name='" + name + '\'' +
                 ", price=" + price +
-                ", qty=" + qty +
-                ", id =" + id +
-                '}';
+                ", id =" + id;
     }
 }
