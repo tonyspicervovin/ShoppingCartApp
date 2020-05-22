@@ -63,25 +63,6 @@ public class Menu {
         }*/
         return null;
     }
-
-    public int getUserItem() {
-        //asking user which item they would like to delete by id
-        Scanner myObj = new Scanner(System.in);
-        int deleteId = 0;
-        while(true){
-            try {
-                System.out.println("Enter the id of the item you would like to delete/edit");
-                deleteId = myObj.nextInt();
-                deleteId = myObj.nextInt();
-                break;
-            }catch (Exception e ){
-                System.out.println("Please an integer");
-            }
-        }
-        return deleteId;
-    }
-
-
     public int displayItem(List<ShoppingItems> itemList) {
         //displaying available items and asking user which they would like to add
         System.out.println("Enter the id of the item you would like");
@@ -92,6 +73,7 @@ public class Menu {
         }
         while (true) {
             try {
+                itemChosen = myObj.nextInt();
                 itemChosen = myObj.nextInt();
                 break;
             }catch (Exception e){

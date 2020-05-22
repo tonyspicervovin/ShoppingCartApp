@@ -27,7 +27,6 @@ public class ShoppingCartDAO {
 
     public void addItem(int itemId) {
         //adding an item to cart by id
-        System.out.println("Item id " + itemId);
         cartList.add(itemId);
     }
 
@@ -45,10 +44,8 @@ public class ShoppingCartDAO {
         return itemList.values().stream().collect(Collectors.toList());
     }
 
-    public void updateItem(ShoppingItems newItem, ShoppingItems oldItem) {
-        //unused method for future implementation
-        oldItem.setPrice(newItem.getPrice());
-        oldItem.setQty(newItem.getQty());
+    public HashMap<Integer, ShoppingItems> getHash() {
+        return itemList;
     }
 
     private ShoppingItems createItem(String itemName, int id, double price) {

@@ -5,6 +5,7 @@ import main.java.ShoppingCartApp.service.ShoppingCartService;
 import main.java.ShoppingCartApp.view.Menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ShoppingCartController {
@@ -15,15 +16,56 @@ public class ShoppingCartController {
     ShoppingCartService service = new ShoppingCartService();
 
     public void run() {
-
         boolean keepGoing = true;
         service.populateItems();
+        List<ShoppingItems> itemList = service.getItemList();
+
         while (keepGoing){
             int selection = menu.displayMenu();
-            service.menuInput(selection);
+            switch(selection) {
+                case 1:
+                    addItem(itemList);
+                    break;
+                case 2:
+                    deleteItem(itemList);
+                    break;
+                case 3:
+                    ArrayList<Integer> cartListIds = service.getCartList();
+                    displayCart(cartListIds, itemList);
+                    break;
+                case 4:
+                    cartListIds = service.getCartList();
+                    calculateTotal(cartListIds, itemList);
+                    break;
+                case 5:
+                    message("Goodbye");
+                    break;
+            }
             if (selection == 5){
                 keepGoing = false;
             }
+        }
+    }
+
+    private void deleteItem(List<ShoppingItems> itemList) {
+        ArrayList<Integer>  cartListIds = service.getCartList();
+        int deleteId = displayItems(itemList);
+        boolean isDeleted = service.deleteItem(deleteId);
+        if (isDeleted) {
+            message(itemList.get(deleteId).getName() + " was removed");
+        }else {
+            System.out.println("No item with that ID found");
+        }
+    }
+
+    public void addItem(List<ShoppingItems> itemList) {
+        HashMap<Integer, ShoppingItems> shoppingItemsHashMap = service.getHash();
+        int itemChosen = displayItems(itemList);
+        boolean isAdded = service.addItem(itemChosen);
+        if (isAdded) {
+            menu.showMessage(shoppingItemsHashMap.get(itemChosen).getName() + " added");
+        }else {
+            menu.showMessage("Item not found");
         }
     }
 
@@ -38,15 +80,6 @@ public class ShoppingCartController {
     public void calculateTotal(ArrayList<Integer> itemIds, List<ShoppingItems> itemList) {
         menu.calculateTotal(itemIds, itemList);
     }
-
-    public ShoppingItems editItem(String oldItemName) {
-        return menu.editItem(oldItemName);
-    }
-
-    public int getUserItem() {
-        return menu.getUserItem();
-    }
-
     public void message(String msg) {
         menu.showMessage(msg);
     }
