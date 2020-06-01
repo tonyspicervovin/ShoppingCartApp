@@ -35,7 +35,7 @@ public class Menu {
         while (stillGoing) {
             try {
                 for (Integer id : itemsId) {   // printing each shopping item
-                    ShoppingItems item = availableItems.get(id);
+                    ShoppingItems item = availableItems.get(id-1);
                     System.out.println(String.format("id: %d name: %s price: %.2f", id, item.getName(), item.getPrice()));
                 }
                 System.out.println("Enter the id of the item you would like to delete");

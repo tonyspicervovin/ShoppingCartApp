@@ -3,11 +3,12 @@ package ShoppingCartApp.controller;
 import ShoppingCartApp.model.ShoppingItems;
 import ShoppingCartApp.service.ShoppingCartService;
 import ShoppingCartApp.view.Menu;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Component
 public class ShoppingCartController {
 
     //initializing objects

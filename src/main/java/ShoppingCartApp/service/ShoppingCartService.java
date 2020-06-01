@@ -3,6 +3,7 @@ package ShoppingCartApp.service;
 import ShoppingCartApp.dao.ShoppingCartDAO;
 import ShoppingCartApp.dao.ShoppingCartDAOImpl;
 import ShoppingCartApp.model.ShoppingItems;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;

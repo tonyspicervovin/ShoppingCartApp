@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component
-@ComponentScan(basePackageClasses = ShoppingCartController.class)
+@ComponentScan(basePackageClasses = ShoppingCartApp.controller.ShoppingCartController.class)
 public class AppConfig {
 
 }
