@@ -3,12 +3,9 @@ package ShoppingCartApp;/*
  */
 
 import ShoppingCartApp.controller.ShoppingCartController;
-import ShoppingCartApp.model.ShoppingItems;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Arrays;
 
 public class App {
 
@@ -18,7 +15,6 @@ public class App {
         App app = new App();
 
         ApplicationContext context = app.init();
-        System.out.println("Bean names: " + Arrays.toString(context.getBeanNamesForType(ShoppingCartController.class)));
         ShoppingCartController controller = context.getBean("shoppingCartController", ShoppingCartController.class);
         controller.run();
     }

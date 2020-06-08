@@ -8,6 +8,15 @@ public class ShoppingItems {
     private int qty;
     private int id;
 
+    public ShoppingItems(String name, double price, int id) {
+        this.name = name;
+        this.price = price;
+        this.id = id;
+    }
+    public ShoppingItems() {
+
+    }
+
     public String getName() {
         return name;
     }

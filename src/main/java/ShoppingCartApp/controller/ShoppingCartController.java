@@ -8,13 +8,19 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 @Component
 public class ShoppingCartController {
 
     //initializing objects
     Menu menu = new Menu();
     //Build build = new Build();
-    ShoppingCartService service = new ShoppingCartService();
+    final
+    ShoppingCartService service;
+
+    public ShoppingCartController(ShoppingCartService service) {
+        this.service = service;
+    }
 
     public void run() {
         boolean keepGoing = true;

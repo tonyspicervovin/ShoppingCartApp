@@ -1,7 +1,6 @@
 package ShoppingCartApp.service;
 
 import ShoppingCartApp.dao.ShoppingCartDAO;
-import ShoppingCartApp.dao.ShoppingCartDAOImpl;
 import ShoppingCartApp.model.ShoppingItems;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +8,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class ShoppingCartService {
 
-    ShoppingCartDAO shoppingCartDAOImpl = (ShoppingCartDAO) new ShoppingCartDAOImpl();
+    final
+    ShoppingCartDAO shoppingCartDAOImpl;
+
+    public ShoppingCartService(ShoppingCartDAO shoppingCartDAOImpl) {
+        this.shoppingCartDAOImpl = shoppingCartDAOImpl;
+    }
 
     public boolean addItem(ArrayList<Integer> itemsChosen) {
 
@@ -23,7 +28,6 @@ public class ShoppingCartService {
                 isAdded = true;
             }
         }
-
         return isAdded;
     }
 

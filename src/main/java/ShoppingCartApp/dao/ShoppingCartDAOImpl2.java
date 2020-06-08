@@ -1,6 +1,5 @@
 package ShoppingCartApp.dao;
 
-import ShoppingCartApp.dao.ShoppingCartDAO;
 import ShoppingCartApp.model.ShoppingItems;
 
 import java.util.ArrayList;

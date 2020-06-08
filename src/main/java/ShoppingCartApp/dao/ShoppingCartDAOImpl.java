@@ -1,12 +1,14 @@
 package ShoppingCartApp.dao;
 
 import ShoppingCartApp.model.ShoppingItems;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ShoppingCartDAOImpl implements ShoppingCartApp.dao.ShoppingCartDAO {
     //initializing list for shopping item ids, this is the users cart
     public ArrayList<Integer> cartList = new ArrayList<>();
